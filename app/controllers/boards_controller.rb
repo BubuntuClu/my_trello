@@ -5,7 +5,8 @@ class BoardsController < ApplicationController
   end
 
   def show
-    @board = Board.find_by(title: params[:title])
+    board = Board.find_by(title: params[:title])
+    @columns = board.columns
   end
 
   def create
