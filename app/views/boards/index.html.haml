@@ -1,0 +1,6 @@
+#div
+  = link_to 'Создать доску', boards_path, method: :post
+
+#div
+  - @boards.each do |board|
+    = link_to "Доска #{board.title}", board_path(board.title)
