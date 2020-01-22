@@ -1,1 +1,7 @@
-= @board.title
+%div
+  %button.add_column Добавить колонку
+#column_area{ style: 'width: 1000px; height: 1000px; display: inline-flex'}
+  - @columns.each do |column|
+    %div.column{ id: "column_#{column.id}" }
+      %button.add_task Добавить карточку
+      %button.remove_column{ data: { id: column.id} } Удалить колонку
