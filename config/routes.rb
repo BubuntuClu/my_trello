@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resource :columns, only: %i(destroy create)
+      resources :columns, only: %i(create destroy) do
+        resources :tasks, only: %i(create update destroy), shallow: true
+      end
     end
   end
 end

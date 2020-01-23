@@ -13,9 +13,10 @@ $(document).ready(function(){
       processData: false,
       success: function(data){
         var column_id = data.column_id;
-        var new_column = ('<div class="column" id="column_' + column_id + '">' +
-                          '  <button class="add_task">Добавить карточку</button>' +
+        var new_column = ('<div class="column" data-id="' + column_id + '" id="column_' + column_id + '">' +
+                          '  <button class="show_task_create_modal">Добавить карточку</button>' +
                           '  <button class="remove_column" data-id="' + column_id + '">Удалить колонку</button>' +
+                          '  <div class="task_area" id="task_column_' + column_id + '"></div>' +
                           '</div>');
         $('#column_area').append(new_column);
       },
@@ -28,15 +29,15 @@ $(document).ready(function(){
 
   $('body').on('click', '.remove_column', null, function(){
     $.ajax({
-      url: 'http://' + window.location.host + '/api/v1/columns?id=' + this.dataset["id"] ,
+      url: 'http://' + window.location.host + '/api/v1/columns/' + this.dataset["id"] ,
       type: "delete",
       dataType: "json",
       cache: false,
       contentType: false,
       processData: false,
       success: function(data){
-        id = data.column_id
-        $('#column_' + id).remove()
+        id = data.column_id;
+        $('#column_' + id).remove();
       },
       error: function(data){
         errors = data.responseJSON;
@@ -45,3 +46,6 @@ $(document).ready(function(){
     });
   });
 });
+
+
+

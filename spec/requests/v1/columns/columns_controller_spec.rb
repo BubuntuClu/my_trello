@@ -5,12 +5,12 @@ RSpec.describe Api::V1::ColumnsController, type: :request do
 
   describe('#create') do
     let(:action) do
-      ->{ post api_v1_columns_path, params: {board_title: board.title} }
+      ->{ post api_v1_columns_path, params: { board_title: board.title} }
     end
 
     it 'response success' do
-     action.call
-     expect(response).to be_successful
+      action.call
+      expect(response).to be_successful
     end
 
     it 'valid json' do
@@ -25,12 +25,12 @@ RSpec.describe Api::V1::ColumnsController, type: :request do
     let!(:column) { board.columns.create }
 
     let(:action) do
-      ->{ delete api_v1_columns_path, params: {id: column.id} }
+      ->{ delete api_v1_column_path(column.id) }
     end
 
     it 'response success' do
-     action.call
-     expect(response).to be_successful
+      action.call
+      expect(response).to be_successful
     end
 
     it 'deletes column' do
