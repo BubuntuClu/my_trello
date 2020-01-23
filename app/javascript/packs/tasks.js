@@ -36,7 +36,7 @@ $(document).ready(function(){
     column_id = $('#column_creator')[0].dataset.id;
 
     $.ajax({
-      url: 'http://' + window.location.host + '/api/v1/columns/' + column_id + '/tasks',
+      url: window.location.origin + '/api/v1/columns/' + column_id + '/tasks',
       data: form_data,
       type: "post",
       dataType: "json",
@@ -69,7 +69,7 @@ $(document).ready(function(){
   $('body').on('click', '.remove_task', null, function(){
     var task_id = this.parentElement.dataset.id;
     $.ajax({
-      url: 'http://' + window.location.host + '/api/v1/tasks/' + task_id,
+      url: window.location.origin + '/api/v1/tasks/' + task_id,
       type: "delete",
       dataType: "json",
       cache: false,
@@ -100,7 +100,7 @@ $(document).ready(function(){
     form_data.append("title", $('#edit_task_title')[0].value);
 
     $.ajax({
-      url: 'http://' + window.location.host + '/api/v1/tasks/' + $('#task_editor')[0].dataset.id,
+      url: window.location.origin + '/api/v1/tasks/' + $('#task_editor')[0].dataset.id,
       data: form_data,
       type: "patch",
       dataType: "json",
