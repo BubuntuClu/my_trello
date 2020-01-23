@@ -4,7 +4,7 @@ $(document).ready(function(){
     form_data.append("board_title", window.location.pathname.split('/')[2]);
 
     $.ajax({
-      url: 'http://' + window.location.host + '/api/v1/columns' ,
+      url: window.location.origin + '/api/v1/columns' ,
       data: form_data,
       type: "post",
       dataType: "json",
@@ -29,7 +29,7 @@ $(document).ready(function(){
 
   $('body').on('click', '.remove_column', null, function(){
     $.ajax({
-      url: 'http://' + window.location.host + '/api/v1/columns/' + this.dataset["id"] ,
+      url: window.location.origin + '/api/v1/columns/' + this.dataset["id"] ,
       type: "delete",
       dataType: "json",
       cache: false,
