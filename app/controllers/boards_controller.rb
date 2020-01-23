@@ -5,7 +5,7 @@ class BoardsController < ApplicationController
   end
 
   def show
-    board = Board.find_by(title: params[:title])
+    board = Board.includes(columns: :tasks).find_by(title: params[:title])
     @columns = board.columns
   end
 
@@ -18,5 +18,4 @@ class BoardsController < ApplicationController
 
     redirect_to board_path(board.title)
   end
-
 end

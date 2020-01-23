@@ -1,7 +1,34 @@
 %div
   %button.add_column Добавить колонку
-#column_area{ style: 'width: 1000px; height: 1000px; display: inline-flex'}
+#column_area
   - @columns.each do |column|
-    %div.column{ id: "column_#{column.id}" }
-      %button.add_task Добавить карточку
+    %div.column{ id: "column_#{column.id}", data: { id: column.id} }
+      %button.show_task_create_modal Добавить карточку
       %button.remove_column{ data: { id: column.id} } Удалить колонку
+
+      .task_area{ id: "task_column_#{column.id}" }
+        - column.tasks.each do |task|
+          %div.task{ data: { id: task.id }, id: "task_#{ task.id}" }
+            %button.remove_task X
+            %button.show_task_edit_modal Редактировать
+            %br
+            %p= task.title
+
+#create_task_modal.modal
+  .modal-content
+    %span.close
+      &times;
+    %span Заголовок карточки
+    %input#create_task_title
+    %button.create_task Создать карточку
+    %div#column_creator{ data: { id: ''}, style: "display: none" }
+
+
+#edit_task_modal.modal
+  .modal-content
+    %span.close
+      &times;
+    %span Заголовок карточки
+    %input#edit_task_title
+    %button.edit_task Редактировать карточку
+    %div#task_editor{ data: { id: ''}, style: "display: none" }
