@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'create task'do
+feature 'create task' do
   given(:board) { Board.create(title: 'spec_column') }
   given!(:column) { board.columns.create }
 

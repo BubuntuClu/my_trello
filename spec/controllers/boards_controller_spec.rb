@@ -13,9 +13,18 @@ RSpec.describe BoardsController do
 
     let!(:board) { Board.create(title: 'test') }
 
-    it "returns a success response" do
-      get :show, params: { title: board.title }
-      expect(response).to be_successful
+    context 'valid url' do
+      it "returns a success response" do
+        get :show, params: { title: board.title }
+        expect(response).to be_successful
+      end
+    end
+
+    context 'invalid url' do
+      it "returns a 404 response" do
+        get :show, params: { title: '123123' }
+        expect(response).to be_not_found
+      end
     end
   end
 end
