@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'create boards'do
+feature 'create boards' do
 
   scenario 'user creates board' do
     visit root_path

@@ -6,6 +6,9 @@ class BoardsController < ApplicationController
 
   def show
     board = Board.includes(columns: :tasks).find_by(title: params[:title])
+
+    return render file: "#{Rails.root}/public/404", layout: false, status: :not_found if board.blank?
+
     @columns = board.columns
   end
 

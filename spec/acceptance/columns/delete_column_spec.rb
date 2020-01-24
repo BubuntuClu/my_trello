@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'create columns'do
+feature 'create columns' do
   given(:board) { Board.create(title: 'spec_column') }
   given!(:column) { board.columns.create }
 
